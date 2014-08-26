@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+	// manually excludes some unnecessary dependencies
+	compile.exclude module: 'javax'
+	compile.exclude module: 'jline'
+	compile.exclude module: 'jms'
+	compile.exclude module: 'jmxri'
+	compile.exclude module: 'jmxtools'
+	compile.exclude module: 'mail'
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+	compile 'org.apache.kafka:kafka_2.9.2:0.8.1.1'
+	compile 'org.scala-lang:scala-library:2.9.2'
+	compile 'org.projectlombok:lombok:1.14.4'
+}
+
+idea {
+	module {
+		downloadSources = true
+	}
+}
